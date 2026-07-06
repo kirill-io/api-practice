@@ -1,0 +1,21 @@
+{
+  "name": "api-practice",
+  "version": "1.0.0",
+  "description": "Учебный репозиторий для практики работы с API во frontend-разработке.",
+  "main": "index.js",
+  "scripts": {
+    "create:project": "node scripts/createProject.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kirill-io/api-practice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kirill-io/api-practice/issues"
+  },
+  "homepage": "https://github.com/kirill-io/api-practice#readme"
+}
