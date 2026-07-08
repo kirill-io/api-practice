@@ -1,0 +1,10 @@
+.root {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 25px;
+}
+
+.brand {
+  display: flex;
+  gap: 20px;
+}

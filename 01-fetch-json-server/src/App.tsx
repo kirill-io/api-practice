@@ -1,5 +1,7 @@
+import { PostsPage } from './pages/PostsPage/PostsPage'
+
 function App() {
-  return <div>01 Fetch</div>
+  return <PostsPage />
 }
 
 export default App
