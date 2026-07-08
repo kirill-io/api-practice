@@ -4,7 +4,10 @@
   "description": "Учебный репозиторий для практики работы с API во frontend-разработке.",
   "main": "index.js",
   "scripts": {
-    "create:project": "node scripts/createProject.mjs"
+    "create:project": "node scripts/createProject.mjs",
+    "mock": "json-server --watch mock-api/db.json --port 3001 --delay 800",
+    "mock:error": "json-server --watch mock-api/db.json --port 3001 --delay 800 --middlewares mock-api/middlewares/error.cjs",
+    "mock:fast": "json-server --watch mock-api/db.json --port 3001"
   },
   "repository": {
     "type": "git",
@@ -17,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/kirill-io/api-practice/issues"
   },
-  "homepage": "https://github.com/kirill-io/api-practice#readme"
+  "homepage": "https://github.com/kirill-io/api-practice#readme",
+  "devDependencies": {
+    "json-server": "0.17.4"
+  }
 }
