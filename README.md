@@ -1,18 +1,36 @@
 # API Practice
 
-Учебный репозиторий для практики работы с API во frontend-разработке.
+Учебный репозиторий для системной практики работы с API во frontend-разработке.
 
-Цель проекта — последовательно пройти разные способы выполнения HTTP-запросов: от обычного `fetch` до более продвинутых инструментов вроде `Axios`, `TanStack Query`, `RTK Query`, а позже — Next.js и собственного backend API.
+Цель проекта — последовательно пройти путь от базовых HTTP-запросов руками до инструментов, которые используются в реальных frontend-проектах: `fetch`, API layer, `Axios`, классический Redux, Redux Toolkit, RTK Query и TanStack Query.
 
-Главная задача — не сделать красивый интерфейс, а хорошо понять:
+Главная задача проекта — не сделать красивый интерфейс, а хорошо понять:
 
 - как frontend получает данные с сервера;
+- как устроен жизненный цикл запроса;
 - как обрабатывать `loading`, `error`, `success`;
-- как типизировать ответы API;
+- как типизировать ответы API и данные для отправки;
 - как выносить запросы из компонентов;
-- как работают `GET`, `POST`, `PATCH`, `PUT`, `DELETE`;
-- чем отличаются разные подходы к работе с API;
-- какую проблему решает каждая технология.
+- как работают `GET`, `POST`, `PUT`, `PATCH`, `DELETE`;
+- чем отличается client state от server state;
+- какую проблему решает каждая следующая технология.
+
+---
+
+## Главное решение по проекту
+
+В качестве основного учебного API используется локальный mock API на базе `json-server`.
+
+Почему не только JSONPlaceholder:
+
+- JSONPlaceholder удобен для самого первого знакомства с запросами;
+- но `POST`, `PUT`, `PATCH`, `DELETE` там только имитируются;
+- созданные, обновлённые и удалённые данные реально не сохраняются;
+- из-за этого сложнее честно тренировать CRUD, обновление списка, refetch, invalidation, optimistic update и rollback.
+
+`json-server` лучше подходит для основного маршрута, потому что данные реально создаются, изменяются и удаляются в локальном `db.json`.
+
+JSONPlaceholder можно оставить как вводное знакомство, но основная практика строится вокруг локального `json-server`.
 
 ---
 
@@ -23,13 +41,16 @@ api-practice/
   README.md
   .gitignore
 
-  01-fetch/
+  mock-api/
+    db.json
+
+  01-fetch-json-server/
   02-fetch-api-layer/
   03-axios/
-  04-tanstack-query/
-  05-rtk-query/
-  06-next-api-practice/
-  07-fullstack-api/
+  04-redux-core-mini/
+  05-redux-toolkit/
+  06-rtk-query/
+  07-tanstack-query/
 ```
 
 Каждая папка — отдельный мини-проект.
@@ -38,25 +59,46 @@ api-practice/
 
 ---
 
+## Основной учебный маршрут
+
+```text
+01. fetch + json-server
+02. fetch + API layer
+03. axios
+04. classic Redux mini
+05. Redux Toolkit
+06. RTK Query
+07. TanStack Query
+```
+
+Маршрут построен так, чтобы сначала понять проблему руками, а потом постепенно переходить к инструментам, которые эту проблему упрощают.
+
+---
+
 ## Roadmap
 
-### 01. Fetch
+### 01. Fetch + json-server
 
-Базовая работа с API через обычный браузерный `fetch`.
+Базовая работа с API через обычный браузерный `fetch` и локальный `json-server`.
 
-Цель этапа — понять механику HTTP-запросов без дополнительных библиотек.
+Цель этапа — понять жизненный цикл HTTP-запроса без дополнительных библиотек.
 
 Что нужно реализовать:
 
+- [ ] поднять локальный `json-server`;
+- [ ] создать `mock-api/db.json`;
 - [ ] получить список постов;
 - [ ] получить один пост по `id`;
 - [ ] создать пост через `POST`;
-- [ ] обновить пост через `PATCH`;
+- [ ] полностью обновить пост через `PUT`;
+- [ ] частично обновить пост через `PATCH`;
 - [ ] удалить пост через `DELETE`;
 - [ ] добавить состояние загрузки;
 - [ ] добавить обработку ошибки;
+- [ ] добавить пустое состояние;
 - [ ] проверить `response.ok`;
-- [ ] типизировать ответ API;
+- [ ] типизировать response;
+- [ ] типизировать DTO для создания и обновления;
 - [ ] посмотреть запросы во вкладке Network.
 
 Что важно понять:
@@ -66,6 +108,7 @@ api-practice/
 - `fetch` сам не выбрасывает ошибку при HTTP-статусах `400`, `404`, `500`;
 - ошибки HTTP нужно обрабатывать через `response.ok`;
 - `loading`, `error`, `data` приходится хранить вручную;
+- `POST`, `PUT`, `PATCH`, `DELETE` реально меняют данные в `db.json`;
 - запросы, написанные прямо в компоненте, быстро делают код грязным.
 
 ---
@@ -91,7 +134,8 @@ src/
 Что нужно реализовать:
 
 - [ ] вынести базовый URL в отдельное место;
-- [ ] создать функции `getPosts`, `getPostById`, `createPost`, `updatePost`, `deletePost`;
+- [ ] создать общий helper для обработки ответа;
+- [ ] создать функции `getPosts`, `getPostById`, `createPost`, `updatePost`, `patchPost`, `deletePost`;
 - [ ] убрать `fetch` из компонентов;
 - [ ] сделать переиспользуемую обработку ошибок;
 - [ ] типизировать входные и выходные данные;
@@ -102,6 +146,7 @@ src/
 - компонент не должен знать детали запроса;
 - API-функция должна возвращать готовые данные;
 - обработку ошибок лучше не дублировать в каждом запросе;
+- DTO лучше хранить рядом с типами сущности или API-слоем;
 - структура проекта становится важнее даже на маленьком приложении.
 
 ---
@@ -118,7 +163,7 @@ src/
 - [ ] создать `axios instance`;
 - [ ] настроить `baseURL`;
 - [ ] настроить `timeout`;
-- [ ] реализовать `GET`, `POST`, `PATCH`, `DELETE`;
+- [ ] реализовать `GET`, `POST`, `PUT`, `PATCH`, `DELETE`;
 - [ ] обработать `AxiosError`;
 - [ ] добавить базовый interceptor;
 - [ ] сравнить код с вариантом на `fetch`.
@@ -133,11 +178,117 @@ src/
 
 ---
 
-### 04. TanStack Query
+### 04. Classic Redux Mini
 
-Работа с серверным состоянием через `TanStack Query`.
+Короткое знакомство с классическим Redux.
 
-Цель этапа — понять, какую проблему решают query-библиотеки.
+Цель этапа — понять базовую механику Redux: `store`, `action`, `reducer`, `dispatch`, `selector`.
+
+Важно: этот этап не нужно превращать в большой CRUD с сервером. Его задача — дать понимание, как Redux работает под капотом.
+
+Что нужно реализовать:
+
+- [ ] установить `redux` и `react-redux`;
+- [ ] создать `store`;
+- [ ] создать `postsReducer`;
+- [ ] описать action types;
+- [ ] описать action creators;
+- [ ] подключить `Provider`;
+- [ ] вывести список постов из Redux state;
+- [ ] добавить пост локально;
+- [ ] изменить пост локально;
+- [ ] удалить пост локально;
+- [ ] получить данные через selector.
+
+Что важно понять:
+
+- state в Redux обновляется через dispatch action;
+- reducer — чистая функция, которая принимает state и action;
+- reducer не должен мутировать state напрямую;
+- классический Redux даёт много boilerplate;
+- этот boilerplate и упрощает Redux Toolkit.
+
+---
+
+### 05. Redux Toolkit
+
+Полноценный CRUD через Redux Toolkit.
+
+Цель этапа — научиться работать с Redux Toolkit как с основным современным способом использования Redux.
+
+Что нужно реализовать:
+
+- [ ] установить `@reduxjs/toolkit` и `react-redux`;
+- [ ] настроить `configureStore`;
+- [ ] подключить `Provider`;
+- [ ] типизировать `RootState`;
+- [ ] типизировать `AppDispatch`;
+- [ ] создать типизированные хуки `useAppDispatch` и `useAppSelector`;
+- [ ] создать `postsSlice`;
+- [ ] реализовать загрузку списка постов через `createAsyncThunk`;
+- [ ] реализовать получение одного поста;
+- [ ] реализовать создание поста;
+- [ ] реализовать полное обновление поста через `PUT`;
+- [ ] реализовать частичное обновление поста через `PATCH`;
+- [ ] реализовать удаление поста;
+- [ ] обработать `pending`, `fulfilled`, `rejected`;
+- [ ] хранить `loading` / `status`;
+- [ ] хранить `error`;
+- [ ] обновлять state после мутаций.
+
+Что важно понять:
+
+- Redux Toolkit уменьшает boilerplate классического Redux;
+- `createSlice` создаёт reducer и actions;
+- внутри reducers можно писать "мутирующий" код благодаря Immer;
+- `createAsyncThunk` помогает описывать асинхронные операции;
+- `extraReducers` обрабатывает статусы async thunk;
+- Redux Toolkit хорошо подходит для client state и ручного управления сложным состоянием.
+
+---
+
+### 06. RTK Query
+
+Работа с API через RTK Query.
+
+Цель этапа — понять подход к server state внутри экосистемы Redux Toolkit.
+
+Что нужно реализовать:
+
+- [ ] создать `createApi`;
+- [ ] настроить `fetchBaseQuery`;
+- [ ] описать endpoints;
+- [ ] использовать generated hooks;
+- [ ] реализовать `builder.query`;
+- [ ] реализовать `builder.mutation`;
+- [ ] настроить `tagTypes`;
+- [ ] настроить `providesTags`;
+- [ ] настроить `invalidatesTags`;
+- [ ] получить список постов;
+- [ ] получить один пост;
+- [ ] создать пост;
+- [ ] обновить пост;
+- [ ] удалить пост;
+- [ ] проверить refetch после мутаций;
+- [ ] посмотреть поведение кэша.
+
+Что важно понять:
+
+- RTK Query встроен в Redux Toolkit;
+- endpoints описываются декларативно;
+- хуки генерируются автоматически;
+- `isLoading`, `isError`, `data`, `refetch` приходят из generated hooks;
+- `tags` используются для обновления данных после мутаций;
+- RTK Query хорошо подходит для приложений, где уже используется Redux;
+- RTK Query чаще нужен для server state, а обычные slices — для client state.
+
+---
+
+### 07. TanStack Query
+
+Работа с server state через TanStack Query.
+
+Цель этапа — изучить альтернативный подход к работе с серверными данными без привязки к Redux.
 
 Что нужно реализовать:
 
@@ -150,118 +301,79 @@ src/
 - [ ] удалить пост через `useMutation`;
 - [ ] сделать `invalidateQueries`;
 - [ ] настроить `staleTime`;
-- [ ] посмотреть поведение кэша.
+- [ ] посмотреть поведение кэша;
+- [ ] попробовать optimistic update;
+- [ ] попробовать rollback при ошибке;
+- [ ] сравнить TanStack Query и RTK Query.
 
 Что важно понять:
 
-- `TanStack Query` работает с server state;
+- TanStack Query работает с server state;
 - больше не нужно вручную писать много `useState` для `loading`, `error`, `data`;
 - `queryKey` — основа кэширования;
 - после мутаций нужно обновлять или инвалидировать данные;
-- библиотека не заменяет API-функции, а использует их.
+- библиотека не заменяет API-функции, а использует их;
+- TanStack Query не требует Redux.
 
 ---
 
-### 05. RTK Query
+## Возможное продолжение после основного маршрута
 
-Работа с API через `RTK Query`.
+После прохождения основного маршрута можно добавить дополнительные этапы:
 
-Цель этапа — понять подход, близкий к реальным рабочим проектам на Redux Toolkit.
+```text
+08-next-api-practice/
+09-fullstack-api/
+```
 
-Что нужно реализовать:
-
-- [ ] установить Redux Toolkit и React Redux;
-- [ ] настроить store;
-- [ ] создать `createApi`;
-- [ ] настроить `fetchBaseQuery`;
-- [ ] описать endpoints;
-- [ ] использовать generated hooks;
-- [ ] реализовать `builder.query`;
-- [ ] реализовать `builder.mutation`;
-- [ ] настроить `tagTypes`;
-- [ ] настроить `providesTags` и `invalidatesTags`.
-
-Что важно понять:
-
-- RTK Query встроен в Redux Toolkit;
-- endpoints описываются декларативно;
-- хуки генерируются автоматически;
-- `tags` используются для обновления данных после мутаций;
-- подход хорошо подходит для приложений, где уже используется Redux.
-
----
-
-### 06. Next API Practice
+### Next API Practice
 
 Практика работы с API в Next.js.
 
-Цель этапа — понять разницу между client-side и server-side запросами.
+Что можно отработать:
 
-Что нужно реализовать:
+- запросы в server components;
+- запросы в client components;
+- `use client`;
+- `loading.tsx`;
+- `error.tsx`;
+- cache;
+- revalidate;
+- route handlers;
+- сравнение Next.js с обычным React-приложением.
 
-- [ ] создать проект на Next.js;
-- [ ] сделать запрос в server component;
-- [ ] сделать запрос в client component;
-- [ ] разобраться с `use client`;
-- [ ] сделать `loading.tsx`;
-- [ ] сделать `error.tsx`;
-- [ ] попробовать `fetch` cache;
-- [ ] попробовать `revalidate`;
-- [ ] создать простой route handler;
-- [ ] сравнить подход с обычным React.
-
-Что важно понять:
-
-- в Next.js запросы можно делать на сервере и на клиенте;
-- server components не имеют доступа к браузерному состоянию;
-- client components нужны для интерактива;
-- у Next.js есть собственное поведение кэширования `fetch`;
-- route handlers позволяют писать backend-like endpoints внутри Next.js.
-
----
-
-### 07. Fullstack API
+### Fullstack API
 
 Практика с собственным backend API.
 
-Цель этапа — перестать быть только потребителем API и понять, как API устроен изнутри.
+Что можно отработать:
 
-Возможные варианты backend:
-
-- Express;
-- NestJS;
-- MongoDB;
-- PostgreSQL.
-
-Что нужно реализовать:
-
-- [ ] создать backend;
-- [ ] создать REST endpoints;
-- [ ] подключить базу данных;
-- [ ] сделать CRUD;
-- [ ] добавить валидацию;
-- [ ] добавить обработку ошибок;
-- [ ] настроить CORS;
-- [ ] подключить frontend;
-- [ ] попробовать авторизацию;
-- [ ] разобраться с access/refresh token.
-
-Что важно понять:
-
-- frontend и backend договариваются через контракт API;
-- ошибки должны быть предсказуемыми;
-- CORS — это настройка взаимодействия браузера и backend;
-- frontend должен уметь работать не только с успешными ответами;
-- реальное API почти всегда сложнее, чем JSONPlaceholder.
+- Express или NestJS;
+- REST endpoints;
+- подключение базы данных;
+- CRUD;
+- валидация;
+- обработка ошибок;
+- CORS;
+- авторизация;
+- access/refresh token.
 
 ---
 
 ## Учебный API
 
-На первых этапах используется JSONPlaceholder:
+Основной учебный API — локальный `json-server`.
 
-```text
-https://jsonplaceholder.typicode.com
+Пример запуска:
+
+```bash
+json-server --watch mock-api/db.json --port 3001
+```
+
+Если используется версия `json-server`, которая поддерживает задержку через CLI:
+
+```bash
+json-server --watch mock-api/db.json --port 3001 --delay 800
 ```
 
 Основные endpoints:
@@ -270,8 +382,8 @@ https://jsonplaceholder.typicode.com
 GET    /posts
 GET    /posts/:id
 POST   /posts
-PATCH  /posts/:id
 PUT    /posts/:id
+PATCH  /posts/:id
 DELETE /posts/:id
 ```
 
@@ -285,41 +397,74 @@ GET /posts/:id/comments
 
 ---
 
+## Пример `db.json`
+
+```json
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Первый пост",
+      "body": "Текст первого поста",
+      "author": "Кирилл",
+      "createdAt": "2026-07-06T18:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "title": "Второй пост",
+      "body": "Текст второго поста",
+      "author": "Кирилл",
+      "createdAt": "2026-07-06T18:10:00.000Z"
+    }
+  ]
+}
+```
+
+---
+
 ## Базовые сущности
 
 Основная сущность для практики:
 
 ```ts
 export interface Post {
-  userId: number;
   id: number;
   title: string;
   body: string;
+  author: string;
+  createdAt: string;
 }
 ```
 
 Для создания поста:
 
 ```ts
-export type CreatePostDto = Omit<Post, "id">;
+export type CreatePostDto = Omit<Post, "id" | "createdAt">;
 ```
 
-Для частичного обновления:
+Для полного обновления через `PUT`:
 
 ```ts
-export type UpdatePostDto = Partial<Omit<Post, "id">>;
+export type UpdatePostDto = Omit<Post, "id">;
+```
+
+Для частичного обновления через `PATCH`:
+
+```ts
+export type PatchPostDto = Partial<UpdatePostDto>;
 ```
 
 ---
 
-## Что должно быть в каждом этапе
+## Что должно быть в каждом CRUD-этапе
 
-В каждом подпроекте желательно реализовать одинаковый минимальный набор:
+В каждом подпроекте, где есть работа с API, желательно реализовать одинаковый минимальный набор:
 
 - [ ] список постов;
 - [ ] просмотр одного поста;
 - [ ] создание поста;
-- [ ] обновление поста;
+- [ ] полное обновление поста;
+- [ ] частичное обновление поста;
 - [ ] удаление поста;
 - [ ] состояние загрузки;
 - [ ] состояние ошибки;
@@ -327,6 +472,8 @@ export type UpdatePostDto = Partial<Omit<Post, "id">>;
 - [ ] типизация данных;
 - [ ] вынос API-логики;
 - [ ] README с выводами по этапу.
+
+Для `04-redux-core-mini` CRUD с сервером необязателен. Этот этап нужен только для понимания Redux-механики.
 
 ---
 
@@ -337,17 +484,18 @@ export type UpdatePostDto = Partial<Omit<Post, "id">>;
 Пример:
 
 ```md
-# 01-fetch
+# 01-fetch-json-server
 
 ## Цель
 
-Понять базовую работу с API через fetch.
+Понять базовую работу с API через fetch и локальный json-server.
 
 ## Что реализовано
 
 - [ ] GET /posts
 - [ ] GET /posts/:id
 - [ ] POST /posts
+- [ ] PUT /posts/:id
 - [ ] PATCH /posts/:id
 - [ ] DELETE /posts/:id
 
@@ -356,7 +504,8 @@ export type UpdatePostDto = Partial<Omit<Post, "id">>;
 - fetch не выбрасывает ошибку при HTTP 404/500;
 - response.json() возвращает Promise;
 - loading/error/data приходится хранить вручную;
-- запросы лучше выносить из компонентов.
+- запросы лучше выносить из компонентов;
+- json-server реально меняет данные в db.json.
 ```
 
 ---
@@ -370,6 +519,8 @@ export type UpdatePostDto = Partial<Omit<Post, "id">>;
 5. Делать маленькие осмысленные коммиты.
 6. Фиксировать выводы после каждого этапа.
 7. Не смешивать разные подходы в одном подпроекте.
+8. Не превращать classic Redux в большой проект.
+9. Отделять client state от server state.
 
 ---
 
@@ -382,9 +533,10 @@ export type UpdatePostDto = Partial<Omit<Post, "id">>;
 - как выглядит код на обычном `fetch`;
 - что меняется после выноса API-слоя;
 - чем удобнее `Axios`;
-- какую боль закрывает `TanStack Query`;
-- как устроен `RTK Query`;
-- чем отличается работа с API в Next.js.
+- какой boilerplate есть в классическом Redux;
+- что упрощает Redux Toolkit;
+- какую боль закрывает RTK Query;
+- чем отличается TanStack Query от RTK Query.
 
 Если смешать всё в одном приложении, быстро появится каша из разных API-клиентов, зависимостей, подходов к состоянию и структуры файлов.
 
@@ -404,21 +556,6 @@ export type UpdatePostDto = Partial<Omit<Post, "id">>;
 
 ---
 
-## Примеры коммитов
-
-```bash
-git commit -m "init api practice repository"
-git commit -m "init fetch practice app"
-git commit -m "add posts fetching with loading state"
-git commit -m "add error handling for fetch requests"
-git commit -m "add post details request"
-git commit -m "add create post request"
-git commit -m "add fetch api layer"
-git commit -m "add axios api client"
-git commit -m "add posts query with tanstack query"
-git commit -m "add posts api with rtk query"
-```
-
 ---
 
 ## GitHub
@@ -431,7 +568,7 @@ git commit -m "add posts api with rtk query"
 Главная ценность репозитория — последовательность:
 
 ```text
-fetch → fetch api layer → axios → tanstack query → rtk query → next.js → fullstack api
+fetch → fetch api layer → axios → classic redux mini → redux toolkit → rtk query → tanstack query
 ```
 
 ---
@@ -441,7 +578,10 @@ fetch → fetch api layer → axios → tanstack query → rtk query → next.js
 - [ ] Создать репозиторий
 - [ ] Добавить корневой README
 - [ ] Добавить `.gitignore`
-- [ ] Создать `01-fetch`
+- [ ] Добавить `mock-api/db.json`
+- [ ] Настроить `json-server`
+- [ ] Создать `01-fetch-json-server`
 - [ ] Реализовать первый GET-запрос
 - [ ] Добавить обработку loading/error
+- [ ] Реализовать базовый CRUD
 - [ ] Запушить первый этап на GitHub
