@@ -1,0 +1,21 @@
+.root {
+  display: flex;
+  justify-content: center;
+  padding-block: 20px;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+}
+
+.slug {
+  font-family: var(--font-family-mono);
+  color: var(--color-text-secondary);
+}
+
+.description::before {
+  content: '•';
+  margin-inline: 10px;
+  color: var(--color-border-secondary);
+}
