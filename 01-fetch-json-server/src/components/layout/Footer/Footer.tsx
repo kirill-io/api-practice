@@ -1,4 +1,4 @@
-import { PROJECT_CONFIG } from '../../../src/config/project-config'
+import { PROJECT_CONFIG } from '@/config/project-config'
 import styles from './Footer.module.css'
 
 const { slug, footerDescription } = PROJECT_CONFIG

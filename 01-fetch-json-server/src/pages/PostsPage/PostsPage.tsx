@@ -1,6 +1,6 @@
+import { Header } from '@/components/layout/Header/Header'
+import { Footer } from '@/components/layout/Footer/Footer'
 import styles from './PostsPage.module.css'
-import { Header } from '../../../components/layout/Header/Header'
-import { Footer } from '../../../components/layout/Footer/Footer'
 
 export const PostsPage = () => {
   return (

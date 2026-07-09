@@ -1,4 +1,4 @@
-import { PostsPage } from './pages/PostsPage/PostsPage'
+import { PostsPage } from '@/pages/PostsPage/PostsPage'
 
 function App() {
   return <PostsPage />
