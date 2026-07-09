@@ -2,9 +2,48 @@
   display: flex;
   justify-content: space-between;
   padding-block: 25px;
+  align-items: center;
 }
 
 .brand {
   display: flex;
   gap: 20px;
+  align-items: center;
+}
+
+.projectBadge {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-accent-primary);
+  color: var(--color-accent-primary);
+  font-size: var(--font-size-lg);
+  line-height: 1;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-mono);
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-xl);
+  line-height: 1.15;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  font-weight: var(--font-weight-medium);
 }

@@ -9,8 +9,8 @@ export const Header = () => {
       <div className={styles.brand}>
         <div className={styles.projectBadge}>{projectNumber}</div>
         <div className={styles.heading}>
-          <div className={styles.title}>{title}</div>
-          <div className={styles.subtitle}>{subtitle}</div>
+          <h1 className={styles.title}>{title}</h1>
+          <p className={styles.subtitle}>{subtitle}</p>
         </div>
       </div>
       <div>Обновить</div>

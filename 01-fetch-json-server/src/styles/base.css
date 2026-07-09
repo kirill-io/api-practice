@@ -1,13 +1,9 @@
 :root {
-  font-family:
-    Inter,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  font-family: var(--font-family-base);
+
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
+  font-weight: var(--font-weight-regular);
 
   color: var(--color-text-primary);
   background-color: var(--color-bg-primary);
