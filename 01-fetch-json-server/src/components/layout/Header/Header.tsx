@@ -8,9 +8,11 @@ const { projectNumber, title, subtitle } = PROJECT_CONFIG
 
 interface HeaderProps {
   className?: string
+  onRefresh?: () => void
+  isRefreshLoading?: boolean
 }
 
-export const Header = ({ className }: HeaderProps) => {
+export const Header = ({ className, onRefresh, isRefreshLoading = false }: HeaderProps) => {
   return (
     <header className={clsx(styles.root, className)}>
       <div className={styles.brand}>
@@ -20,7 +22,13 @@ export const Header = ({ className }: HeaderProps) => {
           <p className={styles.subtitle}>{subtitle}</p>
         </div>
       </div>
-      <Button variant="secondary" size="md" icon={<RefreshCw size={16} />}>
+      <Button
+        variant="secondary"
+        size="md"
+        icon={<RefreshCw size={16} />}
+        onClick={onRefresh}
+        isLoading={isRefreshLoading}
+      >
         Обновить
       </Button>
     </header>
