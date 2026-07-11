@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import { RefreshCw } from 'lucide-react'
+import { Title } from '@/components/ui/Title/Title'
 import { Button } from '@/components/ui/Button/Button'
 import { PROJECT_CONFIG } from '@/config/project-config'
 import styles from './Header.module.css'
@@ -18,7 +19,9 @@ export const Header = ({ className, onRefresh, isRefreshLoading = false }: Heade
       <div className={styles.brand}>
         <div className={styles.projectBadge}>{projectNumber}</div>
         <div className={styles.heading}>
-          <h1 className={styles.title}>{title}</h1>
+          <Title as="h1" className={styles.title}>
+            {title}
+          </Title>
           <p className={styles.subtitle}>{subtitle}</p>
         </div>
       </div>
