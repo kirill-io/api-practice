@@ -29,7 +29,7 @@ export const Header = ({ className, onRefresh, isRefreshLoading = false }: Heade
         onClick={onRefresh}
         isLoading={isRefreshLoading}
       >
-        Обновить
+        Обновить список
       </Button>
     </header>
   )

@@ -10,4 +10,23 @@
 .content {
   flex: 1;
   min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    'posts create'
+    'posts operations';
+  gap: 24px;
+}
+
+.posts {
+  grid-area: posts;
+}
+
+.createPost {
+  grid-area: create;
+}
+
+.operations {
+  grid-area: operations;
 }
