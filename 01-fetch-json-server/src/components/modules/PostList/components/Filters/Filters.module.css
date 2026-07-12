@@ -1,0 +1,15 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.search {
+  width: min(100%, 445px);
+}
+
+.authorSelect {
+  width: 200px;
+  flex-shrink: 0;
+}

@@ -1,11 +1,12 @@
 export interface PostBase {
-  userId: number
   title: string
   body: string
+  author: string
 }
 
 export interface Post extends PostBase {
   id: number
+  createdAt: string
 }
 
 export type CreatePostDto = PostBase

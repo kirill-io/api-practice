@@ -58,4 +58,10 @@
   --line-height-xs: 1.2;
   --line-height-sm: 1.35;
   --line-height-md: 1.5;
+
+  --scrollbar-size: 8px;
+
+  --color-scrollbar-track: transparent;
+  --color-scrollbar-thumb: var(--color-border-secondary);
+  --color-scrollbar-thumb-hover: var(--color-text-muted);
 }

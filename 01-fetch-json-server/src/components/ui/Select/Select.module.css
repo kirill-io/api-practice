@@ -1,0 +1,180 @@
+.root {
+  position: relative;
+  width: 100%;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  padding: 0 42px 0 16px;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-sm);
+  outline: none;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-md);
+  transition:
+    border-color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.controlWithClear {
+  padding-right: 76px;
+}
+
+.control:hover {
+  border-color: var(--color-border-secondary);
+}
+
+.control:focus,
+.controlOpen {
+  border-color: var(--color-accent-primary);
+}
+
+.control:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.placeholder {
+  color: var(--color-text-muted);
+}
+
+.value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chevron {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  z-index: 2;
+  width: 18px;
+  height: 18px;
+  color: var(--color-text-muted);
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition:
+    color var(--transition-base),
+    transform var(--transition-base);
+}
+
+.chevronOpen {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.clear {
+  position: absolute;
+  top: 50%;
+  right: 38px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  color: var(--color-text-muted);
+  background-color: transparent;
+  border: 0;
+  border-radius: var(--radius-sm);
+  transform: translateY(-50%);
+  transition:
+    color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.clear:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-hover);
+}
+
+.clear:focus-visible {
+  outline: 1px solid var(--color-accent-primary);
+}
+
+.clear:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.clear svg {
+  width: 16px;
+  height: 16px;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  left: 0;
+  z-index: 20;
+  padding: 6px;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-sm);
+}
+
+.options {
+  max-height: 220px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  color: var(--color-text-secondary);
+  background-color: transparent;
+  border: 0;
+  border-radius: 6px;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-md);
+  transition:
+    color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.option:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-hover);
+}
+
+.option:focus-visible {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-hover);
+  outline: none;
+}
+
+.optionSelected {
+  color: var(--color-accent-primary);
+  background-color: var(--color-accent-primary-soft);
+}
+
+.check {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.empty {
+  padding: 12px;
+  color: var(--color-text-muted);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-md);
+  text-align: center;
+}
