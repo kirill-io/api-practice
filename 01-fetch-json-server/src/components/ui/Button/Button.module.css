@@ -80,9 +80,8 @@
 }
 
 .primary:hover:not(:disabled) {
-  color: var(--color-bg-primary);
-  background-color: var(--color-accent-primary);
-  border-color: var(--color-accent-primary);
+  background-color: var(--color-accent-primary-soft);
+  border-color: var(--color-accent-primary-hover);
 }
 
 .secondary {
@@ -92,20 +91,8 @@
 }
 
 .secondary:hover:not(:disabled) {
-  color: var(--color-text-primary);
-  background-color: var(--color-surface-secondary);
+  background-color: var(--color-surface-hover);
   border-color: var(--color-border-secondary);
-}
-
-.ghost {
-  color: var(--color-text-secondary);
-  background-color: transparent;
-  border-color: transparent;
-}
-
-.ghost:hover:not(:disabled) {
-  color: var(--color-text-primary);
-  background-color: var(--color-surface-secondary);
 }
 
 .danger {
@@ -115,7 +102,6 @@
 }
 
 .danger:hover:not(:disabled) {
-  color: var(--color-text-primary);
   background-color: var(--color-error-bg);
   border-color: var(--color-error);
 }
