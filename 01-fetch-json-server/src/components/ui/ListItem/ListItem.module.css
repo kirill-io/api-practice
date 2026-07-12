@@ -1,0 +1,20 @@
+.root {
+  width: 100%;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
+  box-sizing: border-box;
+  transition:
+    border-color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.comfortable {
+  padding: 20px;
+  border-radius: var(--radius-md);
+}
+
+.compact {
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+}
