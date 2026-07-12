@@ -26,6 +26,10 @@
   padding-left: 42px;
 }
 
+.inputWithClear {
+  padding-right: 48px;
+}
+
 .input::placeholder {
   color: var(--color-text-muted);
 }
@@ -60,4 +64,56 @@
   width: 18px;
   height: 18px;
   stroke-width: 2;
+}
+
+.clear {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  color: var(--color-text-muted);
+  background-color: transparent;
+  border: 0;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition:
+    color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.clear:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-hover);
+}
+
+.clear:focus-visible {
+  outline: 1px solid var(--color-accent-primary);
+}
+
+.clear:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.clear svg {
+  width: 16px;
+  height: 16px;
+}
+
+.input[type='search'] {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.input[type='search']::-webkit-search-decoration,
+.input[type='search']::-webkit-search-cancel-button {
+  appearance: none;
+  -webkit-appearance: none;
 }

@@ -35,6 +35,9 @@ export const Filters = ({
         onChange={(event) => {
           onSearchQueryChange(event.target.value)
         }}
+        onClear={() => {
+          onSearchQueryChange('')
+        }}
       />
 
       <Select

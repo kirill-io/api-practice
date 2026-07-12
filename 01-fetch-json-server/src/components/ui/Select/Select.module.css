@@ -80,6 +80,7 @@
   justify-content: center;
   width: 26px;
   height: 26px;
+  padding: 0;
   color: var(--color-text-muted);
   background-color: transparent;
   border: 0;
