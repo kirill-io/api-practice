@@ -4,6 +4,7 @@ import { FileText } from 'lucide-react'
 import type { Post } from '@/api/types'
 import { Title } from '@/components/ui/Title/Title'
 import { Filters } from './components/Filters/Filters'
+import { ScrollableList } from '@/components/ui/ScrollableList/ScrollableList'
 import styles from './PostList.module.css'
 
 interface PostListProps {
@@ -32,6 +33,9 @@ export const PostList = ({ className, posts }: PostListProps) => {
     return matchesSearch && matchesAuthor
   })
 
+  const emptyMessage =
+    posts.length === 0 ? 'Постов пока нет' : 'По заданным фильтрам ничего не найдено'
+
   return (
     <div className={clsx(styles.root, className)}>
       <div className={styles.heading}>
@@ -43,12 +47,21 @@ export const PostList = ({ className, posts }: PostListProps) => {
       </div>
 
       <Filters
+        className={styles.filters}
         searchQuery={searchQuery}
         selectedAuthor={selectedAuthor}
         authorOptions={authorOptions}
         onSearchQueryChange={setSearchQuery}
         onSelectedAuthorChange={setSelectedAuthor}
       />
+
+      <ScrollableList
+        className={styles.list}
+        isEmpty={filteredPosts.length === 0}
+        emptyMessage={emptyMessage}
+      >
+        test
+      </ScrollableList>
     </div>
   )
 }

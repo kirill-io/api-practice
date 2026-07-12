@@ -1,0 +1,13 @@
+.root {
+  --scrollbar-gap: 6px;
+  --scrollbar-rail: calc(var(--scrollbar-size) + var(--scrollbar-gap));
+  margin-right: calc(0px - var(--scrollbar-rail));
+  padding-right: var(--scrollbar-gap);
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+.emptyMessage {
+  color: var(--color-text-muted);
+  text-align: center;
+}
