@@ -1,0 +1,22 @@
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.title {
+  line-height: 1;
+}
+
+.count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-accent-primary);
+  background: var(--color-accent-primary-soft);
+  border-radius: var(--radius-sm);
+  line-height: 1;
+  min-width: 28px;
+  height: 28px;
+  padding-inline: 8px;
+}
