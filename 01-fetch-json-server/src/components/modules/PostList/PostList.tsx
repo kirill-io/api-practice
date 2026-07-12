@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { FileText } from 'lucide-react'
 import { Title } from '@/components/ui/Title/Title'
+import { Input } from '@/components/ui/Input/Input'
 import styles from './PostList.module.css'
 import { mockPosts } from '@/mocks/posts'
 
@@ -17,7 +18,9 @@ export const PostList = ({ className }: PostListProps) => {
         </Title>
         <span className={styles.count}>{mockPosts.length}</span>
       </div>
-      <div className={styles.filters}></div>
+      <div className={styles.filters}>
+        <Input />
+      </div>
     </div>
   )
 }
