@@ -1,0 +1,89 @@
+.root {
+  position: relative;
+  width: 100%;
+}
+
+.textarea {
+  display: block;
+  width: 100%;
+  height: 104px;
+  padding: 10px 14px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  resize: none;
+  scrollbar-gutter: stable;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-sm);
+  outline: none;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-md);
+  overflow-wrap: anywhere;
+  transition:
+    border-color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.textareaWithClear {
+  padding-right: 56px;
+}
+
+.textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.textarea:not(:disabled):hover {
+  border-color: var(--color-border-secondary);
+}
+
+.textarea:focus {
+  border-color: var(--color-accent-primary);
+}
+
+.textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.clear {
+  position: absolute;
+  top: 8px;
+  right: calc(var(--scrollbar-size) + 10px);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  color: var(--color-text-muted);
+  background-color: var(--color-bg-secondary);
+  border: 0;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.clear:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-hover);
+}
+
+.clear:focus-visible {
+  outline: 1px solid var(--color-accent-primary);
+}
+
+.clear:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.clear svg {
+  width: 16px;
+  height: 16px;
+}
