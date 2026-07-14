@@ -1,8 +1,10 @@
 import type { ComponentPropsWithoutRef } from 'react'
 import clsx from 'clsx'
+import { Plus, Trash2 } from 'lucide-react'
 import { FormField } from '@/components/ui/FormField/FormField'
 import { Input } from '@/components/ui/Input/Input'
 import { Textarea } from '@/components/ui/Textarea/Textarea'
+import { Button } from '@/components/ui/Button/Button'
 import styles from './Form.module.css'
 
 interface FormProps extends ComponentPropsWithoutRef<'form'> {
@@ -58,7 +60,20 @@ export const Form = ({ className, ...restProps }: FormProps) => {
           />
         </FormField>
       </div>
-      <div className={styles.actions}></div>
+      <div className={styles.actions}>
+        <Button
+          type="reset"
+          variant="secondary"
+          size="md"
+          icon={<Trash2 />}
+          className={styles.action}
+        >
+          Очистить
+        </Button>
+        <Button type="submit" variant="primary" size="md" icon={<Plus />} className={styles.action}>
+          Добавить пост
+        </Button>
+      </div>
     </form>
   )
 }

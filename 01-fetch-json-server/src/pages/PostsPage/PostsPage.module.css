@@ -1,5 +1,6 @@
 .wrapper {
   width: calc(100% - 70px);
+  min-width: 950px;
   max-width: 1600px;
   margin-inline: auto;
   display: flex;
