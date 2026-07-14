@@ -1,12 +1,11 @@
-import type { ReactNode } from 'react'
+import type { PropsWithChildren } from 'react'
 import clsx from 'clsx'
 import styles from './ScrollableList.module.css'
 
-interface ScrollableListProps {
+interface ScrollableListProps extends PropsWithChildren {
   className?: string
-  children: ReactNode
-  isEmpty: boolean
-  emptyMessage: string
+  isEmpty?: boolean
+  emptyMessage?: string
 }
 
 export const ScrollableList = ({

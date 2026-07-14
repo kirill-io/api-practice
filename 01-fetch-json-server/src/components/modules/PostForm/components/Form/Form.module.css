@@ -1,5 +1,6 @@
 .root {
   display: flex;
+  min-height: 0;
   flex-direction: column;
   gap: 16px;
 }
@@ -16,7 +17,7 @@
 }
 
 .action {
-  flex: 1 0 auto;
+  flex: 1 1 0;
 }
 
 .action svg {
