@@ -1,7 +1,7 @@
 .wrapper {
   display: flex;
   width: calc(100% - 70px);
-  min-width: 950px;
+  min-width: 1000px;
   max-width: 1600px;
   height: 100vh;
   margin-inline: auto;
