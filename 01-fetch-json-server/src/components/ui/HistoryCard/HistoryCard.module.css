@@ -1,0 +1,48 @@
+.root {
+  display: grid;
+  grid-template-columns:
+    minmax(58px, 0.8fr)
+    minmax(76px, 1fr)
+    minmax(50px, 0.8fr)
+    minmax(0, 2fr)
+    minmax(40px, 0.7fr);
+  align-items: center;
+  column-gap: 4px;
+}
+
+.method,
+.status {
+  justify-self: start;
+}
+
+.endpoint,
+.message {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.endpoint,
+.message,
+.time {
+  line-height: 1.2;
+}
+
+.endpoint {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+}
+
+.message {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}
+
+.time {
+  justify-self: end;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}

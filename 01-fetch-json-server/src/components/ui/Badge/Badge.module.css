@@ -1,0 +1,44 @@
+.root {
+  padding: 3px 6px;
+  border: 1px solid;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+}
+
+.get {
+  background-color: var(--color-accent-primary-soft);
+  border-color: var(--color-accent-primary-hover);
+  color: var(--color-accent-primary);
+}
+
+.post {
+  background-color: var(--color-success-bg);
+  border-color: var(--color-success-border);
+  color: var(--color-success);
+}
+
+.patch {
+  background-color: var(--color-warning-bg);
+  border-color: var(--color-warning-border);
+  color: var(--color-warning);
+}
+
+.delete {
+  background-color: var(--color-error-bg);
+  border-color: var(--color-error-border);
+  color: var(--color-error);
+}
+
+.success {
+  background-color: var(--color-success-bg);
+  border-color: transparent;
+  color: var(--color-success);
+}
+
+.error {
+  background-color: var(--color-error-bg);
+  border-color: transparent;
+  color: var(--color-error);
+}
